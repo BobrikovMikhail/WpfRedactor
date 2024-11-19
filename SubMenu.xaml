@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfLab1.SubMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLab1"
+        mc:Ignorable="d"
+        Title="Выбо Операций в 2д" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="Transfer" Content="Смещение" HorizontalAlignment="Left" Height="22" Margin="19,36,0,0" VerticalAlignment="Top" Width="120" Click="Transfer_Click"/>
+        <TextBox x:Name="TransferX" HorizontalAlignment="Left" Height="24" Margin="29,92,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" Visibility="Hidden"/>
+        <Label x:Name="TransferLabelX" Content="Введите Коэффициент для Х" HorizontalAlignment="Left" Height="24" Margin="0,63,0,0" VerticalAlignment="Top" Width="170" Visibility="Hidden"/>
+        <Label x:Name="TransferLabelY" Content="Введите Коэффициент для Y" HorizontalAlignment="Left" Height="24" Margin="0,132,0,0" VerticalAlignment="Top" Width="170" Visibility="Hidden"/>
+        <TextBox x:Name="TransferY" HorizontalAlignment="Left" Height="24" Margin="29,161,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" TextChanged="TextBox_TextChanged" Visibility="Hidden"/>
+        <Button x:Name="TransferCofirmBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="39,192,0,0" VerticalAlignment="Top" Width="82" Click="TransferCofirmBtn_Click"/>
+        <Button x:Name="ScaleBtn" Content="Масштаб" HorizontalAlignment="Left" Height="24" Margin="214,36,0,0" VerticalAlignment="Top" Width="82" Click="ScaleBtn_Click"/>
+        <TextBox x:Name="ScaleX" Text="Введите коэффициент для X" HorizontalAlignment="Left" Height="41" Margin="203,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
+        <TextBox x:Name="ScaleY" HorizontalAlignment="Left"  Height="49" Margin="203,132,0,0" TextWrapping="Wrap" Text="Введите Коэффициент для У" VerticalAlignment="Top" Width="123"/>
+        <Button x:Name="ScaleConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="214,193,0,0" VerticalAlignment="Top" Width="82" Click="ScaleConfBtn_Click"/>
+
+    </Grid>
+</Window>
