@@ -17,6 +17,8 @@
         <TextBox x:Name="ScaleX" Text="Введите коэффициент для X" HorizontalAlignment="Left" Height="41" Margin="203,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
         <TextBox x:Name="ScaleY" HorizontalAlignment="Left"  Height="49" Margin="203,132,0,0" TextWrapping="Wrap" Text="Введите Коэффициент для У" VerticalAlignment="Top" Width="123"/>
         <Button x:Name="ScaleConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="214,193,0,0" VerticalAlignment="Top" Width="82" Click="ScaleConfBtn_Click"/>
+        <Button x:Name="MirrorX" Content="Зеркалирование по Х" HorizontalAlignment="Left" Height="24" Margin="380,33,0,0" VerticalAlignment="Top" Width="148" Click="MirrorX_Click"/>
+        <Button x:Name="MirrorY" Content="Зеркалирование по Y" HorizontalAlignment="Left" Height="24" Margin="380,87,0,0" VerticalAlignment="Top" Width="148" Click="MirrorY_Click"/>
 
     </Grid>
 </Window>

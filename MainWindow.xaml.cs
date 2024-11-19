@@ -886,6 +886,86 @@ namespace WpfLab1
             }
         }
 
+        public static void MirrorX()
+        {
+            double centerY = 424;
+            if (selectedShapes.Count != 0)
+            {
+                for (int i = 0; i < selectedShapes.Count; i++)
+                {
+                    // Зеркалирование с учетом смещения
+                    selectedShapes[i].Y1 = centerY - (selectedShapes[i].Y1 - centerY);
+                    selectedShapes[i].Y2 = centerY - (selectedShapes[i].Y2 - centerY);
+                }
+            }
+            else if (curLine != null)
+            {
+                // Зеркалирование с учетом смещения
+                curLine.Y1 = centerY - (curLine.Y1 - centerY);
+                curLine.Y2 = centerY - (curLine.Y2 - centerY);
+            }
+        }
+        public static void MirrorY()
+        {
+            double centerX = 767;
+            if (selectedShapes.Count != 0)
+            {
+                for (int i = 0; i < selectedShapes.Count; i++)
+                {
+                    // Зеркалирование с учетом смещения
+                    selectedShapes[i].X1 = centerX - (selectedShapes[i].X1 - centerX);
+                    selectedShapes[i].X2 = centerX - (selectedShapes[i].X2 - centerX);
+                }
+            }
+            else if (curLine != null)
+            {
+                // Зеркалирование с учетом смещения
+                curLine.X1 = centerX - (curLine.X1 - centerX);
+                curLine.X2 = centerX - (curLine.X2 - centerX);
+            }
+
+        }
+/*        public static void MirrorX()
+        {
+            double centerY = 424;
+            if (selectedShapes.Count != 0)
+            {
+                for (int i = 0; i < selectedShapes.Count; i++)
+                {
+                    // Зеркалирование с учетом смещения
+                    selectedShapes[i].Y1 = centerY + (selectedShapes[i].Y1 *=-1);
+                    selectedShapes[i].Y2 = centerY + (selectedShapes[i].Y2 *= -1);
+                }
+            }
+            else if (curLine != null)
+            {
+                // Зеркалирование с учетом смещения
+                curLine.Y1 = centerY + (curLine.Y1 *= -1);
+                curLine.Y2 = centerY + (curLine.Y2 *= -1);
+            }
+        }
+        public static void MirrorY()
+        {
+            double centerX = 767;
+            if (selectedShapes.Count != 0)
+            {
+                for (int i = 0; i < selectedShapes.Count; i++)
+                {
+                    // Зеркалирование с учетом смещения
+                    selectedShapes[i].X1 = centerX - (selectedShapes[i].X1 - centerX);
+                    selectedShapes[i].X2 = centerX - (selectedShapes[i].X2 - centerX);
+                }
+            }
+            else if (curLine != null)
+            {
+                // Зеркалирование с учетом смещения
+                curLine.X1 = centerX - (curLine.X1 - centerX);
+                curLine.X2 = centerX - (curLine.X2 - centerX);
+            }
+
+        }*/
+
+
 
         /*  private void XYCanvas_Loaded(object sender, RoutedEventArgs e)
           {

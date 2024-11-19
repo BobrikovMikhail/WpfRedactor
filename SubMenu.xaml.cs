@@ -68,5 +68,15 @@ namespace WpfLab1
         {
             MainWindow.ScaleLine(ScaleX.Text, ScaleY.Text);
         }
+
+        private void MirrorX_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MirrorX();
+        }
+
+        private void MirrorY_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MirrorY();
+        }
     }
 }
