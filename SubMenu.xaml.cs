@@ -83,5 +83,15 @@ namespace WpfLab1
         {
             MainWindow.MirroSC();
         }
+
+        private void RolateBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void RolateConfBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Rotate(RolateTb.Text);
+        }
     }
 }

@@ -949,6 +949,101 @@ namespace WpfLab1
                 curLine.Y2 = centerY - (curLine.Y2 - centerY);
             }
         }
+
+        public static void Rotate(string angle)
+        {
+            double gradus = CheckValue(angle); // Преобразуем строку в число
+            double centerX = 767;
+            double centerY = 424;
+            if (gradus > 0 && gradus <= 360)
+            {
+                double radians = gradus * Math.PI / 180.0; // Переводим градусы в радианы
+
+                if (selectedShapes.Count != 0)
+                {
+                    for (int i = 0; i < selectedShapes.Count; i++)
+                    {
+                        // Получаем координаты линии
+                        double x1 = selectedShapes[i].X1;
+                        double y1 = selectedShapes[i].Y1;
+                        double x2 = selectedShapes[i].X2;
+                        double y2 = selectedShapes[i].Y2;
+
+
+                        // Смещаем координаты к центру вращения
+                        x1 -= centerX;
+                        y1 -= centerY;
+                        x2 -= centerX;
+                        y2 -= centerY;
+
+                        // Применяем матрицу поворота
+                        double newX1 = x1 * Math.Cos(radians) - y1 * Math.Sin(radians);
+                        double newY1 = x1 * Math.Sin(radians) + y1 * Math.Cos(radians);
+                        double newX2 = x2 * Math.Cos(radians) - y2 * Math.Sin(radians);
+                        double newY2 = x2 * Math.Sin(radians) + y2 * Math.Cos(radians);
+
+                        // Возвращаем координаты обратно
+                        newX1 += centerX;
+                        newY1 += centerY;
+                        newX2 += centerX;
+                        newY2 += centerY;
+
+                        // Обновляем координаты линии
+                        selectedShapes[i].X1 = newX1;
+                        selectedShapes[i].Y1 = newY1;
+                        selectedShapes[i].X2 = newX2;
+                        selectedShapes[i].Y2 = newY2;
+                    }
+                }
+                else if (curLine != null)
+                {
+                    double x1 = curLine.X1;
+                    double y1 = curLine.Y1;
+                    double x2 = curLine.X2;
+                    double y2 = curLine.Y2;
+
+                    
+
+
+                    // Смещаем координаты к центру вращения
+                    x1 -= centerX;
+                    y1 -= centerY;
+                    x2 -= centerX;
+                    y2 -= centerY;
+                    double newX1 = x1 * Math.Cos(radians) - y1 * Math.Sin(radians);
+                    double newY1 = x1 * Math.Sin(radians) + y1 * Math.Cos(radians);
+                    double newX2 = x2 * Math.Cos(radians) - y2 * Math.Sin(radians);
+                    double newY2 = x2 * Math.Sin(radians) + y2 * Math.Cos(radians);
+
+                    newX1 += centerX;
+                    newY1 += centerY;
+                    newX2 += centerX;
+                    newY2 += centerY;
+
+                    curLine.X1 = newX1; curLine.X2=newX2; curLine.Y1 = newY1; curLine.Y2 = newY2;
+
+                }
+            }
+        }
+
+       /* public static void Rolation(string grade)
+        {
+            double gradus = CheckValue(grade);
+            if(gradus>0 && gradus <= 360)
+            {
+                if(selectedShapes.Count != 0)
+                {
+                    for(int i =0; i< selectedShapes.Count; i++)
+                    {
+                        selectedShapes[i].X1 *= Math.Cos(gradus);
+                        selectedShapes[i].Y1 *= Math.Sin(gradus);
+
+                        selectedShapes[i].X2 *= -Math.Sin(gradus);
+                        selectedShapes[i].Y2 *= Math.Cos(gradus);
+                    }
+                }
+            }
+        }*/
 /*        public static void MirrorX()
         {
             double centerY = 424;
