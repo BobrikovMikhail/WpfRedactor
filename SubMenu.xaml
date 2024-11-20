@@ -12,17 +12,17 @@
         <Label x:Name="TransferLabelX" Content="Введите Коэффициент для Х" HorizontalAlignment="Left" Height="24" Margin="0,63,0,0" VerticalAlignment="Top" Width="170" Visibility="Hidden"/>
         <Label x:Name="TransferLabelY" Content="Введите Коэффициент для Y" HorizontalAlignment="Left" Height="24" Margin="0,132,0,0" VerticalAlignment="Top" Width="170" Visibility="Hidden"/>
         <TextBox x:Name="TransferY" HorizontalAlignment="Left" Height="24" Margin="29,161,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" TextChanged="TextBox_TextChanged" Visibility="Hidden"/>
-        <Button x:Name="TransferCofirmBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="39,192,0,0" VerticalAlignment="Top" Width="82" Click="TransferCofirmBtn_Click"/>
+        <Button x:Name="TransferCofirmBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="39,192,0,0" VerticalAlignment="Top" Width="82" Click="TransferCofirmBtn_Click" Visibility="Hidden"/>
         <Button x:Name="ScaleBtn" Content="Масштаб" HorizontalAlignment="Left" Height="24" Margin="214,36,0,0" VerticalAlignment="Top" Width="82" Click="ScaleBtn_Click"/>
-        <TextBox x:Name="ScaleX" Text="Введите коэффициент для X" HorizontalAlignment="Left" Height="41" Margin="203,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="ScaleY" HorizontalAlignment="Left"  Height="49" Margin="203,132,0,0" TextWrapping="Wrap" Text="Введите Коэффициент для У" VerticalAlignment="Top" Width="123"/>
-        <Button x:Name="ScaleConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="214,193,0,0" VerticalAlignment="Top" Width="82" Click="ScaleConfBtn_Click"/>
+        <TextBox x:Name="ScaleX" Text="Введите коэффициент для X" HorizontalAlignment="Left" Height="41" Margin="203,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123" Visibility="Hidden"/>
+        <TextBox x:Name="ScaleY" HorizontalAlignment="Left"  Height="49" Margin="203,132,0,0" TextWrapping="Wrap" Text="Введите Коэффициент для У" VerticalAlignment="Top" Width="123" Visibility="Hidden"/>
+        <Button x:Name="ScaleConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="214,193,0,0" VerticalAlignment="Top" Width="82" Click="ScaleConfBtn_Click" Visibility="Hidden"/>
         <Button x:Name="MirrorX" Content="Зеркалирование по Х" HorizontalAlignment="Left" Height="24" Margin="380,33,0,0" VerticalAlignment="Top" Width="148" Click="MirrorX_Click"/>
         <Button x:Name="MirrorY" Content="Зеркалирование по Y" HorizontalAlignment="Left" Height="24" Margin="380,87,0,0" VerticalAlignment="Top" Width="148" Click="MirrorY_Click"/>
         <Button x:Name="MirrorSC" Content="Зеркалирование Начало координат" HorizontalAlignment="Left" Height="24" Margin="353,139,0,0" VerticalAlignment="Top" Width="202" Click="MirrorSC_Click"/>
         <Button x:Name="RolateBtn" Content="Поворот" HorizontalAlignment="Left" Height="24" Margin="595,33,0,0" VerticalAlignment="Top" Width="123" Click="RolateBtn_Click"/>
-        <TextBox x:Name="RolateTb" Text="Введите угол поворота" HorizontalAlignment="Left" Height="42" Margin="595,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123"/>
-        <Button x:Name="RolateConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="616,193,0,0" VerticalAlignment="Top" Width="82" Click="RolateConfBtn_Click"/>
+        <TextBox x:Name="RolateTb" Text="Введите угол поворота" HorizontalAlignment="Left" Height="42" Margin="595,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123" Visibility="Hidden"/>
+        <Button x:Name="RolateConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="616,139,0,0" VerticalAlignment="Top" Width="82" Click="RolateConfBtn_Click" Visibility="Hidden"/>
 
     </Grid>
 </Window>
