@@ -78,5 +78,10 @@ namespace WpfLab1
         {
             MainWindow.MirrorY();
         }
+
+        private void MirrorSC_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.MirroSC();
+        }
     }
 }

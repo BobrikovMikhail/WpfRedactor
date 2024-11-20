@@ -22,7 +22,7 @@
             <Button x:Name="Operations" Content="Операции 2д" Height="26" Canvas.Left="251" Canvas.Top="10" Width="118" Background="#FF0E49B7"  Foreground="#FF78EE18" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Operations_Click"/>
         </Canvas>
 
-        <Canvas x:Name="XYCanvas" Background="Transparent" Width="1700" Height="1000"  Loaded="XYCanvas_Loaded_1" Panel.ZIndex="0" IsHitTestVisible="False"
+        <Canvas x:Name="XYCanvas" Background="Transparent" Width="1500" Height="1000"  Loaded="XYCanvas_Loaded_1" Panel.ZIndex="0" IsHitTestVisible="False"
         />
 
         <!--<Canvas x:Name="XYCanvas" Background="Transparent" Loaded="XYCanvas_Loaded"/> -->

@@ -925,6 +925,30 @@ namespace WpfLab1
             }
 
         }
+        public static void MirroSC()
+        {
+            double centerX = 767; double centerY = 424;
+            if (selectedShapes.Count != 0)
+            {
+                for (int i = 0; i < selectedShapes.Count; i++)
+                {
+                    // Зеркалирование с учетом смещения
+                    selectedShapes[i].X1 = centerX - (selectedShapes[i].X1 - centerX);
+                    selectedShapes[i].X2 = centerX - (selectedShapes[i].X2 - centerX);
+                    selectedShapes[i].Y1 = centerY - (selectedShapes[i].Y1 - centerY);
+                    selectedShapes[i].Y2 = centerY - (selectedShapes[i].Y2 - centerY);
+
+                }
+            }
+            else if (curLine != null)
+            {
+                // Зеркалирование с учетом смещения
+                curLine.X1 = centerX - (curLine.X1 - centerX);
+                curLine.X2 = centerX - (curLine.X2 - centerX);
+                curLine.Y1 = centerY - (curLine.Y1 - centerY);
+                curLine.Y2 = centerY - (curLine.Y2 - centerY);
+            }
+        }
 /*        public static void MirrorX()
         {
             double centerY = 424;

@@ -19,6 +19,7 @@
         <Button x:Name="ScaleConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="214,193,0,0" VerticalAlignment="Top" Width="82" Click="ScaleConfBtn_Click"/>
         <Button x:Name="MirrorX" Content="Зеркалирование по Х" HorizontalAlignment="Left" Height="24" Margin="380,33,0,0" VerticalAlignment="Top" Width="148" Click="MirrorX_Click"/>
         <Button x:Name="MirrorY" Content="Зеркалирование по Y" HorizontalAlignment="Left" Height="24" Margin="380,87,0,0" VerticalAlignment="Top" Width="148" Click="MirrorY_Click"/>
+        <Button x:Name="MirrorSC" Content="Зеркалирование Начало координат" HorizontalAlignment="Left" Height="24" Margin="353,139,0,0" VerticalAlignment="Top" Width="202" Click="MirrorSC_Click"/>
 
     </Grid>
 </Window>
