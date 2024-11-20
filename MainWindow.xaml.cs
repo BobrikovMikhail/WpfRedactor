@@ -957,7 +957,8 @@ namespace WpfLab1
             double centerY = 424;
             if (gradus > 0 && gradus <= 360)
             {
-                double radians = gradus * Math.PI / 180.0; // Переводим градусы в радианы
+                double radians = -gradus * Math.PI / 180.0; // Переводим градусы в радианы
+                
 
                 if (selectedShapes.Count != 0)
                 {
