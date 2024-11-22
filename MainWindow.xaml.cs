@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -32,12 +33,13 @@ namespace WpfLab1
         static private List<Line> selectedShapes = new List<Line>();
         int cnt = 0;
         System.Windows.Shapes.Rectangle rect = new System.Windows.Shapes.Rectangle();
+        string currentFilePath = null;
         public MainWindow()
         {
             InitializeComponent();
             CreateBtn.Background = Brushes.Green;
             this.WindowState = WindowState.Maximized;
-            
+
         }
 
         /*private void paintSurface_MouseDown(object sender, MouseButtonEventArgs ev)
@@ -519,7 +521,8 @@ namespace WpfLab1
                         {
                             double offsetX = currentPoint.X - previousPoint.X;
                             double offsetY = currentPoint.Y - previousPoint.Y;
-                            if (selectedShapes.Count != 0) {
+                            if (selectedShapes.Count != 0)
+                            {
                                 for (int i = 0; i < selectedShapes.Count; i++)
                                 {
                                     curLine = (Line)selectedShapes[i];
@@ -663,23 +666,23 @@ namespace WpfLab1
             Operations.Background = Brushes.Green;
             EditBtn.Background = brush;
             CreateBtn.Background = brush;
-            
+
             wind.ShowDialog();
         }
         //Проверка числового значения из TextBox
-       /* public static double CheckValue(TextBox t)
-        {
-            // Попробуем разобрать значения из текстбоксов
-            bool isVal1Valid = double.TryParse(t.Text, out double val1);
-            //bool isVal2Valid = double.TryParse(t2.Text, out double val2);
+        /* public static double CheckValue(TextBox t)
+         {
+             // Попробуем разобрать значения из текстбоксов
+             bool isVal1Valid = double.TryParse(t.Text, out double val1);
+             //bool isVal2Valid = double.TryParse(t2.Text, out double val2);
 
-            // Проверяем, были ли оба значения корректно разобраны
-            if (!isVal1Valid)
-            {
-                MessageBox.Show("Ошибка: введите число", "Некорректный ввод", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            
-        }*/
+             // Проверяем, были ли оба значения корректно разобраны
+             if (!isVal1Valid)
+             {
+                 MessageBox.Show("Ошибка: введите число", "Некорректный ввод", MessageBoxButton.OK, MessageBoxImage.Error);
+             }
+
+         }*/
         private static double CheckValue(string countString)
         {
             if (!string.IsNullOrWhiteSpace(countString))
@@ -720,7 +723,7 @@ namespace WpfLab1
                         selectedShapes[i].Y1 += YKoef;
                         selectedShapes[i].Y2 += YKoef;
                     }
-                 
+
                 }
 
                 else if (XKoef != 0 && YKoef == 0)
@@ -732,7 +735,7 @@ namespace WpfLab1
                     }
 
                 }
-                else if(XKoef != 0 && YKoef != 0)
+                else if (XKoef != 0 && YKoef != 0)
                 {
                     for (int i = 0; i < selectedShapes.Count; i++)
                     {
@@ -745,19 +748,19 @@ namespace WpfLab1
             }
             else
             {
-                if(curLine != null)
+                if (curLine != null)
                 {
-                    if(XKoef == 0 && YKoef != 0)
+                    if (XKoef == 0 && YKoef != 0)
                     {
                         curLine.Y1 += YKoef;
                         curLine.Y2 += YKoef;
                     }
-                    else if(XKoef != 0 && YKoef == 0)
+                    else if (XKoef != 0 && YKoef == 0)
                     {
                         curLine.X1 += XKoef;
                         curLine.X2 += XKoef;
                     }
-                    else if(YKoef != 0 && YKoef != 0)
+                    else if (YKoef != 0 && YKoef != 0)
                     {
                         curLine.X1 += XKoef;
                         curLine.X2 += XKoef;
@@ -766,7 +769,7 @@ namespace WpfLab1
                     }
                 }
             }
-            
+
         }
 
         /* public static void ScaleLine(string XK, string YK)
@@ -861,7 +864,7 @@ namespace WpfLab1
         {
             // Найдем центр линии
             //double centerX = (line.X1 + line.X2) / 2; 
-            
+
 
             double centerX = 767; double centerY = 424;
             //double centerY = (line.Y1 + line.Y2) / 2;
@@ -958,7 +961,7 @@ namespace WpfLab1
             if (gradus > 0 && gradus <= 360)
             {
                 double radians = -gradus * Math.PI / 180.0; // Переводим градусы в радианы
-                
+
 
                 if (selectedShapes.Count != 0)
                 {
@@ -1003,7 +1006,7 @@ namespace WpfLab1
                     double x2 = curLine.X2;
                     double y2 = curLine.Y2;
 
-                    
+
 
 
                     // Смещаем координаты к центру вращения
@@ -1021,69 +1024,69 @@ namespace WpfLab1
                     newX2 += centerX;
                     newY2 += centerY;
 
-                    curLine.X1 = newX1; curLine.X2=newX2; curLine.Y1 = newY1; curLine.Y2 = newY2;
+                    curLine.X1 = newX1; curLine.X2 = newX2; curLine.Y1 = newY1; curLine.Y2 = newY2;
 
                 }
             }
         }
 
-       /* public static void Rolation(string grade)
-        {
-            double gradus = CheckValue(grade);
-            if(gradus>0 && gradus <= 360)
-            {
-                if(selectedShapes.Count != 0)
-                {
-                    for(int i =0; i< selectedShapes.Count; i++)
-                    {
-                        selectedShapes[i].X1 *= Math.Cos(gradus);
-                        selectedShapes[i].Y1 *= Math.Sin(gradus);
+        /* public static void Rolation(string grade)
+         {
+             double gradus = CheckValue(grade);
+             if(gradus>0 && gradus <= 360)
+             {
+                 if(selectedShapes.Count != 0)
+                 {
+                     for(int i =0; i< selectedShapes.Count; i++)
+                     {
+                         selectedShapes[i].X1 *= Math.Cos(gradus);
+                         selectedShapes[i].Y1 *= Math.Sin(gradus);
 
-                        selectedShapes[i].X2 *= -Math.Sin(gradus);
-                        selectedShapes[i].Y2 *= Math.Cos(gradus);
+                         selectedShapes[i].X2 *= -Math.Sin(gradus);
+                         selectedShapes[i].Y2 *= Math.Cos(gradus);
+                     }
+                 }
+             }
+         }*/
+        /*        public static void MirrorX()
+                {
+                    double centerY = 424;
+                    if (selectedShapes.Count != 0)
+                    {
+                        for (int i = 0; i < selectedShapes.Count; i++)
+                        {
+                            // Зеркалирование с учетом смещения
+                            selectedShapes[i].Y1 = centerY + (selectedShapes[i].Y1 *=-1);
+                            selectedShapes[i].Y2 = centerY + (selectedShapes[i].Y2 *= -1);
+                        }
+                    }
+                    else if (curLine != null)
+                    {
+                        // Зеркалирование с учетом смещения
+                        curLine.Y1 = centerY + (curLine.Y1 *= -1);
+                        curLine.Y2 = centerY + (curLine.Y2 *= -1);
                     }
                 }
-            }
-        }*/
-/*        public static void MirrorX()
-        {
-            double centerY = 424;
-            if (selectedShapes.Count != 0)
-            {
-                for (int i = 0; i < selectedShapes.Count; i++)
+                public static void MirrorY()
                 {
-                    // Зеркалирование с учетом смещения
-                    selectedShapes[i].Y1 = centerY + (selectedShapes[i].Y1 *=-1);
-                    selectedShapes[i].Y2 = centerY + (selectedShapes[i].Y2 *= -1);
-                }
-            }
-            else if (curLine != null)
-            {
-                // Зеркалирование с учетом смещения
-                curLine.Y1 = centerY + (curLine.Y1 *= -1);
-                curLine.Y2 = centerY + (curLine.Y2 *= -1);
-            }
-        }
-        public static void MirrorY()
-        {
-            double centerX = 767;
-            if (selectedShapes.Count != 0)
-            {
-                for (int i = 0; i < selectedShapes.Count; i++)
-                {
-                    // Зеркалирование с учетом смещения
-                    selectedShapes[i].X1 = centerX - (selectedShapes[i].X1 - centerX);
-                    selectedShapes[i].X2 = centerX - (selectedShapes[i].X2 - centerX);
-                }
-            }
-            else if (curLine != null)
-            {
-                // Зеркалирование с учетом смещения
-                curLine.X1 = centerX - (curLine.X1 - centerX);
-                curLine.X2 = centerX - (curLine.X2 - centerX);
-            }
+                    double centerX = 767;
+                    if (selectedShapes.Count != 0)
+                    {
+                        for (int i = 0; i < selectedShapes.Count; i++)
+                        {
+                            // Зеркалирование с учетом смещения
+                            selectedShapes[i].X1 = centerX - (selectedShapes[i].X1 - centerX);
+                            selectedShapes[i].X2 = centerX - (selectedShapes[i].X2 - centerX);
+                        }
+                    }
+                    else if (curLine != null)
+                    {
+                        // Зеркалирование с учетом смещения
+                        curLine.X1 = centerX - (curLine.X1 - centerX);
+                        curLine.X2 = centerX - (curLine.X2 - centerX);
+                    }
 
-        }*/
+                }*/
 
 
 
@@ -1187,6 +1190,62 @@ namespace WpfLab1
             Canvas.SetLeft(yLabel, centerX + 10);  // Правильное позиционирование по оси X
             Canvas.SetTop(yLabel, 10);  // Правильное позиционирование по оси Y
             XYCanvas.Children.Add(yLabel);
+        }
+
+        private void Save(string filePath)
+        {
+            var drawableObject = new Save_Load();
+            drawableObject.SaveObjectsToFile(filePath, paintSurface);
+            MessageBox.Show("Файл успешно сохранен", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void SaveAs()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "XML Files (*.xml)|*.xml",
+                DefaultExt = ".xml",
+                Title = "Сохранить проект как"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                currentFilePath = saveFileDialog.FileName;
+                Save(currentFilePath);
+            }
+        }
+
+
+            private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(currentFilePath))
+            {
+                SaveAs();
+            }
+            else
+            {
+                Save(currentFilePath);
+            }
+        }
+
+        private void LoadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var drawableObject = new Save_Load();
+                drawableObject.LoadObjectsFromFile(openFileDialog.FileName, paintSurface);
+                currentFilePath = openFileDialog.FileName;
+            }
+        }
+
+        private void SaveAsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SaveAs();
         }
 
         /* private void paintSurface_Loaded(object sender, RoutedEventArgs e)

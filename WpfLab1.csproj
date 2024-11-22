@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Save_Load.cs" />
     <Compile Include="SubMenu.xaml.cs">
       <DependentUpon>SubMenu.xaml</DependentUpon>
     </Compile>

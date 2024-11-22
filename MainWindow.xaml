@@ -20,6 +20,9 @@
             <Label x:Name="equationLabel" Content="Ур-е Прямых" Height="33" Canvas.Left="67" Canvas.Top="127" Width="206"/>
             <Label x:Name="ContLabel" Content="Label" Height="42" Canvas.Left="315" Canvas.Top="368" Width="163"/>
             <Button x:Name="Operations" Content="Операции 2д" Height="26" Canvas.Left="251" Canvas.Top="10" Width="118" Background="#FF0E49B7"  Foreground="#FF78EE18" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Operations_Click"/>
+            <Button x:Name="SaveBtn" Content="Сохранение" Background="#FF0E49B7"  Foreground="#FF78EE18" Height="26" Width="114" Click="SaveBtn_Click" RenderTransformOrigin="-0.463,0.311" Canvas.Left="396" Canvas.Top="10" Cursor="Hand" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="SaveAsBtn" Content="Сохранить как" Background="#FF0E49B7" Foreground="#FF78EE18" Height="26" Width="114" Click="SaveAsBtn_Click" Canvas.Left="675" Canvas.Top="10" Cursor="Hand" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="LoadBtn" Content="Загрузка" Background="#FF0E49B7"  Foreground="#FF78EE18" Height="26" Width="114" Click="LoadBtn_Click" RenderTransformOrigin="-0.463,0.311" Canvas.Left="535" Canvas.Top="10" Cursor="Hand" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
 
         <Canvas x:Name="XYCanvas" Background="Transparent" Width="1500" Height="1000"  Loaded="XYCanvas_Loaded_1" Panel.ZIndex="0" IsHitTestVisible="False"
