@@ -1240,6 +1240,7 @@ namespace WpfLab1
             {
                 var drawableObject = new Save_Load();
                 drawableObject.LoadObjectsFromFile(openFileDialog.FileName, paintSurface);
+                //очистка списка выделенных групп
                 selectedShapes.Clear();
                 currentFilePath = openFileDialog.FileName;
             }
