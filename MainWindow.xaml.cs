@@ -1228,6 +1228,7 @@ namespace WpfLab1
             }
         }
 
+
         private void LoadBtn_Click(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
