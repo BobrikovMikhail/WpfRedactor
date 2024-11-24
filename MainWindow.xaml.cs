@@ -1030,70 +1030,52 @@ namespace WpfLab1
             }
         }
 
-        /* public static void Rolation(string grade)
-         {
-             double gradus = CheckValue(grade);
-             if(gradus>0 && gradus <= 360)
-             {
-                 if(selectedShapes.Count != 0)
-                 {
-                     for(int i =0; i< selectedShapes.Count; i++)
-                     {
-                         selectedShapes[i].X1 *= Math.Cos(gradus);
-                         selectedShapes[i].Y1 *= Math.Sin(gradus);
 
-                         selectedShapes[i].X2 *= -Math.Sin(gradus);
-                         selectedShapes[i].Y2 *= Math.Cos(gradus);
-                     }
-                 }
-             }
-         }*/
-        /*        public static void MirrorX()
+      public static void Proection(string p, string q)
+        {
+            double centerX = 767;
+            double centerY = 424;
+            double PKoef = CheckValue(p);
+            double QKoef = CheckValue(q);
+            if(selectedShapes.Count != 0)
+            {
+                for(int i=0; i< selectedShapes.Count; i++)
                 {
-                    double centerY = 424;
-                    if (selectedShapes.Count != 0)
-                    {
-                        for (int i = 0; i < selectedShapes.Count; i++)
-                        {
-                            // Зеркалирование с учетом смещения
-                            selectedShapes[i].Y1 = centerY + (selectedShapes[i].Y1 *=-1);
-                            selectedShapes[i].Y2 = centerY + (selectedShapes[i].Y2 *= -1);
-                        }
-                    }
-                    else if (curLine != null)
-                    {
-                        // Зеркалирование с учетом смещения
-                        curLine.Y1 = centerY + (curLine.Y1 *= -1);
-                        curLine.Y2 = centerY + (curLine.Y2 *= -1);
-                    }
+                    double x1 = selectedShapes[i].X1 - centerX;
+                    double y1 = selectedShapes[i].Y1 - centerY;
+                    double x2 = selectedShapes[i].X2 - centerX;
+                    double y2 = selectedShapes[i].Y2 - centerY;
+
+                    double newX1 = x1 / (PKoef * x1 + QKoef * y1 + 1);
+                    double newY1 = y1 / (PKoef * x1 + QKoef * y1 + 1);
+                    double newX2 = x2 / (PKoef * x2 + QKoef * y2 + 1);
+                    double newY2 = y2 / (PKoef * x2 + QKoef * y2 + 1);
+
+                    selectedShapes[i].X1 = newX1 + centerX;
+                    selectedShapes[i].Y1 = newY1 + centerY;
+                    selectedShapes[i].X2 = newX2 + centerX;
+                    selectedShapes[i].Y2 = newY2 + centerY;
                 }
-                public static void MirrorY()
-                {
-                    double centerX = 767;
-                    if (selectedShapes.Count != 0)
-                    {
-                        for (int i = 0; i < selectedShapes.Count; i++)
-                        {
-                            // Зеркалирование с учетом смещения
-                            selectedShapes[i].X1 = centerX - (selectedShapes[i].X1 - centerX);
-                            selectedShapes[i].X2 = centerX - (selectedShapes[i].X2 - centerX);
-                        }
-                    }
-                    else if (curLine != null)
-                    {
-                        // Зеркалирование с учетом смещения
-                        curLine.X1 = centerX - (curLine.X1 - centerX);
-                        curLine.X2 = centerX - (curLine.X2 - centerX);
-                    }
+            }
+            else if(curLine != null)
+            {
+                double x1 = curLine.X1 - centerX;
+                double y1 = curLine.Y1 - centerY;
+                double x2 = curLine.X2 - centerX;
+                double y2 = curLine.Y2 - centerY;
 
-                }*/
+                double newX1 = x1 / (PKoef * x1 + QKoef * y1 + 1);
+                double newY1 = y1 / (PKoef * x1 + QKoef * y1 + 1);
+                double newX2 = x2 / (PKoef * x2 + QKoef * y2 + 1);
+                double newY2 = y2 / (PKoef * x2 + QKoef * y2 + 1);
 
+                curLine.X1 = newX1 + centerX;
+                curLine.Y1 = newY1 + centerY;
+                curLine.X2 = newX2 + centerX;
+                curLine.Y2 = newY2 + centerY;
+            }
 
-
-        /*  private void XYCanvas_Loaded(object sender, RoutedEventArgs e)
-          {
-
-          }*/
+        }
 
         private void XYCanvas_Loaded_1(object sender, RoutedEventArgs e)
         {
@@ -1250,6 +1232,8 @@ namespace WpfLab1
         {
             SaveAs();
         }
+
+
 
         /* private void paintSurface_Loaded(object sender, RoutedEventArgs e)
          {

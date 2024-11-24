@@ -140,5 +140,15 @@ namespace WpfLab1
         {
             MainWindow.Rotate(RolateTb.Text);
         }
+
+        private void ProectionConfBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Proection(ProectionPTB.Text, ProectionQTB.Text);
+        }
+
+        private void ProectionBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

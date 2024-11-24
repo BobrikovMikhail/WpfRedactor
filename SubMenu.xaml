@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLab1"
         mc:Ignorable="d"
-        Title="Выбо Операций в 2д" Height="450" Width="800">
+        Title="Выбо Операций в 2д" Height="450" Width="1000">
     <Grid>
         <Button x:Name="Transfer" Content="Смещение" HorizontalAlignment="Left" Height="22" Margin="19,36,0,0" VerticalAlignment="Top" Width="120" Click="Transfer_Click"/>
         <TextBox x:Name="TransferX" HorizontalAlignment="Left" Height="24" Margin="29,92,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" Visibility="Hidden"/>
@@ -23,6 +23,10 @@
         <Button x:Name="RolateBtn" Content="Поворот" HorizontalAlignment="Left" Height="24" Margin="595,33,0,0" VerticalAlignment="Top" Width="123" Click="RolateBtn_Click"/>
         <TextBox x:Name="RolateTb" Text="Введите угол поворота" HorizontalAlignment="Left" Height="42" Margin="595,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123" Visibility="Hidden"/>
         <Button x:Name="RolateConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="616,139,0,0" VerticalAlignment="Top" Width="82" Click="RolateConfBtn_Click" Visibility="Hidden"/>
+        <Button x:Name="ProectionBtn" Content="Проецирование" HorizontalAlignment="Left" Height="24" Margin="779,33,0,0" VerticalAlignment="Top" Width="123" Click="ProectionBtn_Click"/>
+        <TextBox x:Name="ProectionPTB" Text="Введите коэффициент при х" HorizontalAlignment="Left" Height="39" Margin="783,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
+        <TextBox x:Name="ProectionQTB" Text="Введите коэффициент при y" HorizontalAlignment="Left" Height="39" Margin="783,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
+        <Button x:Name="ProectionConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="800,204,0,0" VerticalAlignment="Top" Width="82" Click="ProectionConfBtn_Click"/>
 
     </Grid>
 </Window>
