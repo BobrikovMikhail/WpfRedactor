@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLab1"
         mc:Ignorable="d"
-        Title="Выбо Операций в 2д" Height="450" Width="1000">
+        Title="Выбор Операций в 2д" Height="450" Width="800">
     <Grid>
         <Button x:Name="Transfer" Content="Смещение" HorizontalAlignment="Left" Height="22" Margin="19,36,0,0" VerticalAlignment="Top" Width="120" Click="Transfer_Click"/>
         <TextBox x:Name="TransferX" HorizontalAlignment="Left" Height="24" Margin="29,92,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="112" Visibility="Hidden"/>
@@ -17,16 +17,16 @@
         <TextBox x:Name="ScaleX" Text="Введите коэффициент для X" HorizontalAlignment="Left" Height="41" Margin="203,75,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123" Visibility="Hidden"/>
         <TextBox x:Name="ScaleY" HorizontalAlignment="Left"  Height="49" Margin="203,132,0,0" TextWrapping="Wrap" Text="Введите Коэффициент для У" VerticalAlignment="Top" Width="123" Visibility="Hidden"/>
         <Button x:Name="ScaleConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="214,193,0,0" VerticalAlignment="Top" Width="82" Click="ScaleConfBtn_Click" Visibility="Hidden"/>
-        <Button x:Name="MirrorX" Content="Зеркалирование по Х" HorizontalAlignment="Left" Height="24" Margin="380,33,0,0" VerticalAlignment="Top" Width="148" Click="MirrorX_Click"/>
+        <Button x:Name="MirrorX" Content="Зеркалирование по Х" HorizontalAlignment="Left" Height="24" Margin="380,36,0,0" VerticalAlignment="Top" Width="148" Click="MirrorX_Click"/>
         <Button x:Name="MirrorY" Content="Зеркалирование по Y" HorizontalAlignment="Left" Height="24" Margin="380,87,0,0" VerticalAlignment="Top" Width="148" Click="MirrorY_Click"/>
         <Button x:Name="MirrorSC" Content="Зеркалирование Начало координат" HorizontalAlignment="Left" Height="24" Margin="353,139,0,0" VerticalAlignment="Top" Width="202" Click="MirrorSC_Click"/>
-        <Button x:Name="RolateBtn" Content="Поворот" HorizontalAlignment="Left" Height="24" Margin="595,33,0,0" VerticalAlignment="Top" Width="123" Click="RolateBtn_Click"/>
+        <Button x:Name="RolateBtn" Content="Поворот" HorizontalAlignment="Left" Height="24" Margin="595,36,0,0" VerticalAlignment="Top" Width="123" Click="RolateBtn_Click"/>
         <TextBox x:Name="RolateTb" Text="Введите угол поворота" HorizontalAlignment="Left" Height="42" Margin="595,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="123" Visibility="Hidden"/>
         <Button x:Name="RolateConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="616,139,0,0" VerticalAlignment="Top" Width="82" Click="RolateConfBtn_Click" Visibility="Hidden"/>
-        <Button x:Name="ProectionBtn" Content="Проецирование" HorizontalAlignment="Left" Height="24" Margin="779,33,0,0" VerticalAlignment="Top" Width="123" Click="ProectionBtn_Click"/>
+       <!-- <Button x:Name="ProectionBtn" Content="Проецирование" HorizontalAlignment="Left" Height="24" Margin="779,33,0,0" VerticalAlignment="Top" Width="123" Click="ProectionBtn_Click"/>
         <TextBox x:Name="ProectionPTB" Text="Введите коэффициент при х" HorizontalAlignment="Left" Height="39" Margin="783,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
         <TextBox x:Name="ProectionQTB" Text="Введите коэффициент при y" HorizontalAlignment="Left" Height="39" Margin="783,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
         <Button x:Name="ProectionConfBtn" Content="Подтвердить" HorizontalAlignment="Left" Height="24" Margin="800,204,0,0" VerticalAlignment="Top" Width="82" Click="ProectionConfBtn_Click"/>
-
+       -->
     </Grid>
 </Window>
