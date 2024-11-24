@@ -1030,16 +1030,15 @@ namespace WpfLab1
             }
         }
 
-
-      public static void Proection(string p, string q)
+        public static void Proection(string p, string q)
         {
             double centerX = 767;
             double centerY = 424;
             double PKoef = CheckValue(p);
             double QKoef = CheckValue(q);
-            if(selectedShapes.Count != 0)
+            if (selectedShapes.Count != 0)
             {
-                for(int i=0; i< selectedShapes.Count; i++)
+                for (int i = 0; i < selectedShapes.Count; i++)
                 {
                     double x1 = selectedShapes[i].X1 - centerX;
                     double y1 = selectedShapes[i].Y1 - centerY;
@@ -1051,13 +1050,13 @@ namespace WpfLab1
                     double newX2 = x2 / (PKoef * x2 + QKoef * y2 + 1);
                     double newY2 = y2 / (PKoef * x2 + QKoef * y2 + 1);
 
-                    selectedShapes[i].X1 = newX1 + centerX;
-                    selectedShapes[i].Y1 = newY1 + centerY;
-                    selectedShapes[i].X2 = newX2 + centerX;
-                    selectedShapes[i].Y2 = newY2 + centerY;
+                    selectedShapes[i].X1 = newX1;
+                    selectedShapes[i].Y1 = newY1;
+                    selectedShapes[i].X2 = newX2;
+                    selectedShapes[i].Y2 = newY2;
                 }
             }
-            else if(curLine != null)
+            else if (curLine != null)
             {
                 double x1 = curLine.X1 - centerX;
                 double y1 = curLine.Y1 - centerY;
@@ -1069,10 +1068,10 @@ namespace WpfLab1
                 double newX2 = x2 / (PKoef * x2 + QKoef * y2 + 1);
                 double newY2 = y2 / (PKoef * x2 + QKoef * y2 + 1);
 
-                curLine.X1 = newX1 + centerX;
-                curLine.Y1 = newY1 + centerY;
-                curLine.X2 = newX2 + centerX;
-                curLine.Y2 = newY2 + centerY;
+                curLine.X1 = newX1;
+                curLine.Y1 = newY1;
+                curLine.X2 = newX2;
+                curLine.Y2 = newY2;
             }
 
         }
