@@ -1233,6 +1233,15 @@ namespace WpfLab1
             SaveAs();
         }
 
+        private void Open3DBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+                MainWindow3D window3D = new MainWindow3D();
+                window3D.Show();
+            
+
+        }
+
 
 
         /* private void paintSurface_Loaded(object sender, RoutedEventArgs e)
