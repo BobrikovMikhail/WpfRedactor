@@ -19,19 +19,48 @@ namespace WpfLab1
             this.Width = 1920;
             this.Height = 1080;
 
-            AddAxes();
+            Create3DAxesManual(viewport3d);
         }
 
-        private void AddAxes()
+        public LinesVisual3D Create3DAxis(int X1, int Y1, int Z1, int X2, int Y2, int Z2, Color color)
+        {
+            var axes = new LinesVisual3D
+            {
+                Points = new Point3DCollection
+                {
+                   new Point3D(X1, Y1, Z1),
+                   new Point3D(X2, Y2, Z2)
+                },
+                Color = color,
+                Thickness = 3
+            };
+            return axes;
+        }
+        private void Create3DAxesManual(HelixViewport3D viewport)
+        {
+            //Ось X (красная)
+            var xAxis = Create3DAxis(0, 0, 0, 100, 0, 0, Colors.Red);
+            //Ось Y (зеленая)
+            var yAxis = Create3DAxis(0, 0, 0, 0, 100, 0, Colors.Green);
+            //Ось Z (синяя)
+            var zAxis = Create3DAxis(0, 0, 0, 0, 0, 100, Colors.Blue);
+
+            //Добавляем оси в 3D сцену
+            viewport.Children.Add(xAxis);
+            viewport.Children.Add(yAxis);
+            viewport.Children.Add(zAxis);
+        }
+
+        /*private void AddAxes()
         {
             // Ось X - красная
-            Add3DLine(new Point3D(0, 0, 0), new Point3D(10, 0, 0), Colors.Red);
+            Add3DLine(new Point3D(0, 0, 0), new Point3D(100, 0, 0), Colors.Red);
 
             // Ось Y - зеленая
-            Add3DLine(new Point3D(0, 0, 0), new Point3D(0, 10, 0), Colors.Green);
+            Add3DLine(new Point3D(0, 0, 0), new Point3D(0, 100, 0), Colors.Green);
 
             // Ось Z - синяя, увеличиваем длину для лучшей видимости
-            Add3DLine(new Point3D(0, 0, 0), new Point3D(0, 0, 10), Colors.Blue);
+            Add3DLine(new Point3D(0, 0, 0), new Point3D(0, 0, 100), Colors.Blue);
         }
 
         public void Add3DLine(Point3D start, Point3D end, Color color)
@@ -45,7 +74,7 @@ namespace WpfLab1
             line.Points.Add(end);
 
             viewport3d.Children.Add(line);
-        }
+        }*/
 
         private Point3D ScreenToWorld(Point screenPoint, double z)
         {

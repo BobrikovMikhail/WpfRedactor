@@ -4,12 +4,13 @@
         xmlns:h="http://helix-toolkit.org/wpf"
         Title="3D Редактор" Height="450" Width="800">
     <Grid>
-        <h:HelixViewport3D Name="viewport3d" MouseDown="viewport3d_MouseDown" MouseMove="viewport3d_MouseMove" MouseUp="viewport3d_MouseUp">
+         <h:HelixViewport3D Name="viewport3d" ShowCoordinateSystem="True">
             <h:HelixViewport3D.Camera>
-                <PerspectiveCamera x:Name="camera" Position="0,0,15" LookDirection="0,0,-1" UpDirection="0,1,0" FieldOfView="45" />
+                <PerspectiveCamera Position="300,300,300" LookDirection="-1,-1,-1" UpDirection="0,1,0" />
             </h:HelixViewport3D.Camera>
-            <h:DefaultLights/>
+            <h:DefaultLights />
         </h:HelixViewport3D>
+        
 
         <!-- Подписи для осей -->
         <TextBlock x:Name="labelX" Foreground="Red" FontSize="16" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10,10,0,0">X</TextBlock>
