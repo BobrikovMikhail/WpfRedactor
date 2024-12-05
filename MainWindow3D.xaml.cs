@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
 using HelixToolkit.Wpf;
 
 namespace WpfLab1
@@ -11,6 +13,7 @@ namespace WpfLab1
         private Point3D curStartPoint;
         private bool isDrawing;
         private LinesVisual3D currentLine;
+        MainWindow main = new MainWindow();
 
         public MainWindow3D()
         {
@@ -20,6 +23,7 @@ namespace WpfLab1
             this.Height = 1080;
 
             Create3DAxesManual(viewport3d);
+            LoadLinesTo3D();    
         }
 
         public LinesVisual3D Create3DAxis(int X1, int Y1, int Z1, int X2, int Y2, int Z2, Color color)
@@ -130,5 +134,46 @@ namespace WpfLab1
                 line.Points[1] = end;
             }
         }
-    }
+        private void LoadLinesTo3D()
+        {
+            List<Line> lines = new List<Line>();
+            for (int i = 0; i < main.paintSurface.Children.Count; i++)
+            {
+                if (main.paintSurface.Children[i] is Line) lines.Add((Line)main.paintSurface.Children[i]);
+            }
+            if (lines.Count > 0)
+            {
+                double z = 10; // Константа для Z-координаты
+
+                foreach (Line line in lines)
+                {
+                    // Получаем координаты начала и конца линии
+                    Point start2D = new Point(line.X1, line.Y1);
+                    Point end2D = new Point(line.X2, line.Y2);
+
+                    // Конвертируем в 3D точки
+                    Point3D start3D = new Point3D(start2D.X, start2D.Y, z);
+                    Point3D end3D = new Point3D(end2D.X, end2D.Y, z);
+
+                    // Создаем 3D линию и добавляем ее в 3D viewport
+                    LinesVisual3D line3D = AddNewLine3D(start3D, end3D, Colors.Black);
+                    viewport3d.Children.Add(line3D);
+                }
+            }
+        }
+
+        private LinesVisual3D AddNewLine3D(Point3D start, Point3D end, Color color)
+        {
+            var line = new LinesVisual3D
+            {
+                Color = color,
+                Thickness = 2
+            };
+            line.Points.Add(start);
+            line.Points.Add(end);
+
+            return line;
+        } 
+        }
+    
 }
