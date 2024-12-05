@@ -1235,11 +1235,11 @@ namespace WpfLab1
 
         private void Open3DBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-                MainWindow3D window3D = new MainWindow3D();
-                window3D.Show();
-            
 
+            MainWindow3D window3D = new MainWindow3D();
+            window3D.LoadLinesTo3D(paintSurface);
+            window3D.Show();
+            
         }
 
 

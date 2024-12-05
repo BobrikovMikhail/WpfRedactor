@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
@@ -13,6 +14,7 @@ namespace WpfLab1
         private Point3D curStartPoint;
         private bool isDrawing;
         private LinesVisual3D currentLine;
+        private static List<Line> lines = new List<Line>();
         MainWindow main = new MainWindow();
 
         public MainWindow3D()
@@ -23,7 +25,7 @@ namespace WpfLab1
             this.Height = 1080;
 
             Create3DAxesManual(viewport3d);
-            LoadLinesTo3D();    
+            
         }
 
         public LinesVisual3D Create3DAxis(int X1, int Y1, int Z1, int X2, int Y2, int Z2, Color color)
@@ -134,7 +136,7 @@ namespace WpfLab1
                 line.Points[1] = end;
             }
         }
-        private void LoadLinesTo3D()
+        /*private void LoadLinesTo3D()
         {
             List<Line> lines = new List<Line>();
             for (int i = 0; i < main.paintSurface.Children.Count; i++)
@@ -143,7 +145,7 @@ namespace WpfLab1
             }
             if (lines.Count > 0)
             {
-                double z = 10; // Константа для Z-координаты
+                double z = 0; // Константа для Z-координаты
 
                 foreach (Line line in lines)
                 {
@@ -160,20 +162,40 @@ namespace WpfLab1
                     viewport3d.Children.Add(line3D);
                 }
             }
-        }
-
-        private LinesVisual3D AddNewLine3D(Point3D start, Point3D end, Color color)
+        }*/
+        private void AddLinesOnCanvas()
         {
-            var line = new LinesVisual3D
+            foreach (var line in lines)
             {
-                Color = color,
-                Thickness = 2
-            };
-            line.Points.Add(start);
-            line.Points.Add(end);
+                var start3D = new Point3D(line.X1, -line.Y1, -100);
+                var end3D = new Point3D(line.X2, -line.Y2, -100);
 
-            return line;
-        } 
+                var line3D = AddNewLine3D(start3D, end3D, 2, Colors.Gray);
+                viewport3d.Children.Add(line3D);
+            }
         }
+        public void LoadLinesTo3D(Canvas paintSurface)
+        {
+            foreach (var child in paintSurface.Children)
+            {
+                if (child is Line line)
+                {
+                    lines.Add(line);
+                 
+                }
+            }
+            AddLinesOnCanvas();
+        }
+
+        private LinesVisual3D AddNewLine3D(Point3D start, Point3D end, double thikness, Color color)
+        {
+            return new LinesVisual3D
+            {
+                Points = new Point3DCollection { start, end },
+                Thickness = thikness,
+                Color = color
+            };
+        }
+    }
     
 }
