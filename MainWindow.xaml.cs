@@ -1030,7 +1030,8 @@ namespace WpfLab1
             }
         }
 
-        public static void Proection(string p, string q)
+
+     /* public static void Proection(string p, string q)
         {
             double centerX = 767;
             double centerY = 424;
@@ -1074,7 +1075,7 @@ namespace WpfLab1
                 curLine.Y2 = newY2;
             }
 
-        }
+        }*/
 
         private void XYCanvas_Loaded_1(object sender, RoutedEventArgs e)
         {
@@ -1230,6 +1231,15 @@ namespace WpfLab1
         private void SaveAsBtn_Click(object sender, RoutedEventArgs e)
         {
             SaveAs();
+        }
+
+        private void Open3DBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+                MainWindow3D window3D = new MainWindow3D();
+                window3D.Show();
+            
+
         }
 
 

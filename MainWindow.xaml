@@ -11,18 +11,19 @@
     <Grid>
 
         <Canvas x:Name="paintSurface" Background="Transparent" MouseDown="paintSurface_MouseDown" MouseUp="paintSurface_MouseUp" MouseMove="paintSurface_MouseMove" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,-14808,-8302" Panel.ZIndex="1" >
-            <Label x:Name="LabelXY" Content="КоординатыКлика" Height="25" Canvas.Left="23" Canvas.Top="386" Width="136" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label x:Name="LineLabel" Content="Label"  Height="33" VerticalAlignment="Top" Width="99" Grid.Column="1" Canvas.Left="174" Canvas.Top="60"/>
-            <Label x:Name="LabelDist" Content="Label" Height="34" VerticalAlignment="Top" Width="139" Grid.ColumnSpan="2" Canvas.Left="364" Canvas.Top="73"/>
-            <Label x:Name="LabelDistToLine" Content="Label" Height="25" Canvas.Left="579" Canvas.Top="147" Width="140"/>
+            <Label x:Name="LabelXY" Content="КоординатыКлика" Height="25" Canvas.Left="174" Canvas.Top="42" Width="136" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="LineLabel" Content="Label"  Height="33" VerticalAlignment="Top" Width="99" Grid.Column="1" Canvas.Left="174" Canvas.Top="60" Visibility="Hidden"/>
+            <Label x:Name="LabelDist" Content="Label" Height="34" VerticalAlignment="Top" Width="139" Grid.ColumnSpan="2" Canvas.Left="364" Canvas.Top="73" Visibility="Hidden"/>
+            <Label x:Name="LabelDistToLine" Content="Label" Height="25" Canvas.Left="579" Canvas.Top="147" Width="140" Visibility="Hidden"/>
             <Button x:Name="EditBtn" Content="Редактирование" Background="#FF0E49B7"  Foreground="#FF78EE18" Height="26" Width="100" Click="EditBtn_Click_1" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="135" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand"/>
             <Button x:Name="CreateBtn" Content="Создание" Background="#FF0E49B7"  Foreground="#FF78EE18" Height="26" Width="114" Click="CreateBtn_Click" RenderTransformOrigin="-0.463,0.311" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="10" Cursor="Hand" AllowDrop="True"/>
-            <Label x:Name="equationLabel" Content="Ур-е Прямых" Height="33" Canvas.Left="67" Canvas.Top="127" Width="206"/>
-            <Label x:Name="ContLabel" Content="Label" Height="42" Canvas.Left="315" Canvas.Top="368" Width="163"/>
+            <Label x:Name="equationLabel" Content="Ур-е Прямой" Height="32" Canvas.Left="10" Canvas.Top="44" Width="206"/>
+            <Label x:Name="ContLabel" Content="Label" Height="42" Canvas.Left="315" Canvas.Top="368" Width="163" Visibility="Hidden"/>
             <Button x:Name="Operations" Content="Операции 2д" Height="26" Canvas.Left="251" Canvas.Top="10" Width="118" Background="#FF0E49B7"  Foreground="#FF78EE18" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Operations_Click"/>
             <Button x:Name="SaveBtn" Content="Сохранение" Background="#FF0E49B7"  Foreground="#FF78EE18" Height="26" Width="114" Click="SaveBtn_Click" RenderTransformOrigin="-0.463,0.311" Canvas.Left="396" Canvas.Top="10" Cursor="Hand" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Button x:Name="SaveAsBtn" Content="Сохранить как" Background="#FF0E49B7" Foreground="#FF78EE18" Height="26" Width="114" Click="SaveAsBtn_Click" Canvas.Left="675" Canvas.Top="10" Cursor="Hand" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Button x:Name="LoadBtn" Content="Загрузка" Background="#FF0E49B7"  Foreground="#FF78EE18" Height="26" Width="114" Click="LoadBtn_Click" RenderTransformOrigin="-0.463,0.311" Canvas.Left="535" Canvas.Top="10" Cursor="Hand" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="Open3DBtn" Content="3Д" Background="#FF0E49B7"  Foreground="#FF78EE18" Height="26" Width="114" Click="Open3DBtn_Click" RenderTransformOrigin="-0.463,0.311" Canvas.Left="10" Canvas.Top="389" Cursor="Hand" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Canvas>
 
         <Canvas x:Name="XYCanvas" Background="Transparent" Width="1500" Height="1000"  Loaded="XYCanvas_Loaded_1" Panel.ZIndex="0" IsHitTestVisible="False" 
