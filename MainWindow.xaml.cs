@@ -39,6 +39,7 @@ namespace WpfLab1
             InitializeComponent();
             CreateBtn.Background = Brushes.Green;
             this.WindowState = WindowState.Maximized;
+            this.Closed += MainWindow_Closed;
 
         }
 
@@ -244,7 +245,19 @@ namespace WpfLab1
             return;
         }
 
-        public static void SelectObject(Line CurLine, bool isShiftPressed)
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            // Закрытие всех окон
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window != this)
+                {
+                    window.Close();
+                }
+            }
+        }
+
+            public static void SelectObject(Line CurLine, bool isShiftPressed)
         {
             // Получаем объект, по которому кликнули
             //var ivent = e.OriginalSource as Shape;
@@ -976,7 +989,7 @@ namespace WpfLab1
 
                         // Смещаем координаты к центру вращения
                         x1 -= centerX;
-                        y1 -= centerY;
+                        y1 -= centerY;   
                         x2 -= centerX;
                         y2 -= centerY;
 
