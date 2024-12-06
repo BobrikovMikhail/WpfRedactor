@@ -167,8 +167,10 @@ namespace WpfLab1
         {
             foreach (var line in lines)
             {
-                var start3D = new Point3D(line.X1, -line.Y1, -100);
-                var end3D = new Point3D(line.X2, -line.Y2, -100);
+                var start3D = new Point3D((line.X1 - 767) / 5, (-line.Y1 + 498) / 5, 0);
+                var end3D = new Point3D((line.X2 - 767) / 5, (-line.Y2 + 498) / 5, 0);
+                /*var start3D = new Point3D(line.X1, -line.Y1, -100);
+                var end3D = new Point3D(line.X2, -line.Y2, -100);*/
 
                 var line3D = AddNewLine3D(start3D, end3D, 2, Colors.Gray);
                 viewport3d.Children.Add(line3D);
