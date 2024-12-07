@@ -4,19 +4,23 @@
         xmlns:h="http://helix-toolkit.org/wpf"
         Title="3D Редактор" Height="450" Width="800"
         KeyDown="WindowKeyDown">
-        
+
     <Grid>
-         <h:HelixViewport3D Name="viewport3d" ShowCoordinateSystem="True">
+        <h:HelixViewport3D Name="viewport3d" ShowCoordinateSystem="True">
             <h:HelixViewport3D.Camera>
                 <PerspectiveCamera Position="300,300,300" LookDirection="-1,-1,-1" UpDirection="0,1,0" />
             </h:HelixViewport3D.Camera>
             <h:DefaultLights />
         </h:HelixViewport3D>
-        
+
 
         <!-- Подписи для осей -->
         <TextBlock x:Name="labelX" Foreground="Red" FontSize="16" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10,10,0,0">X</TextBlock>
         <TextBlock x:Name="labelY" Foreground="Green" FontSize="16" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,10,0">Y</TextBlock>
         <TextBlock x:Name="labelZ" Foreground="Blue" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">Z</TextBlock>
+        <Button x:Name="TrimetrMatr" Content="Триметрическая матрица" HorizontalAlignment="Left" Height="30" Margin="45,21,0,0" VerticalAlignment="Top" Width="149" Click="TrimetrMatr_Click"/>
+        <TextBox x:Name="FItb" HorizontalAlignment="Left" Height="30" Margin="64,68,0,0" TextWrapping="Wrap" Text="введите фи" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="Tetatb" HorizontalAlignment="Left" Height="27" Margin="64,115,0,0" TextWrapping="Wrap" Text="введите тэта" VerticalAlignment="Top" Width="112"/>
+        <Button x:Name="ChangeZ" Content="изменить z" HorizontalAlignment="Left" Height="30" Margin="254,21,0,0" VerticalAlignment="Top" Width="104" Click="ChangeZ_Click"/>
     </Grid>
 </Window>

@@ -19,7 +19,7 @@ namespace WpfLab1
         private LinesVisual3D selectedLine;
         private static List<Line> lines = new List<Line>();
         MainWindow main = new MainWindow();
-       // List<LinesVisual3D> selectedLines = new List<LinesVisual3D>();
+        // List<LinesVisual3D> selectedLines = new List<LinesVisual3D>();
 
         public MainWindow3D()
         {
@@ -86,7 +86,7 @@ namespace WpfLab1
                     isMoving = true;
                 }
             }
-          
+
         }
 
         private void viewport3d_MouseMove(object sender, MouseEventArgs e)
@@ -266,7 +266,7 @@ namespace WpfLab1
             {
                 RolateLines3DX();
             }
-            if(e.Key == Key.F2)
+            if (e.Key == Key.F2)
             {
                 RolateLines3DY();
             }
@@ -276,8 +276,163 @@ namespace WpfLab1
             if (e.Key == Key.S && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control
                 && (Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
             {
-               
+
             }
         }
+        private static double CheckValue(string countString)
+        {
+            if (!string.IsNullOrWhiteSpace(countString))
+            {
+                double number;
+                bool isOkType;
+                isOkType = double.TryParse(countString, out number);
+                if (!isOkType)
+                {
+                    MessageBox.Show("Ошибка: введите число", "Некорректный ввод", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return 0;
+                }
+                return number;
+            }
+            else
+            {
+                MessageBox.Show("Ошибка: введите число", "Некорректный ввод", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return 0;
+        }
+        private void TrimetrMatrix(string fiValue, string tetaValue)
+        {
+            double fiKoef = CheckValue(fiValue);
+            double tetaKoef = CheckValue(tetaValue);
+            double fi = -fiKoef * Math.PI / 180.0;
+            double teta = -tetaKoef * Math.PI / 180.0;
+            foreach (var child in viewport3d.Children)
+            {
+                if (child is LinesVisual3D line3D)
+                {
+                    if (line3D.Color == Colors.Gray)
+                    {
+
+
+                        //Получаем точки начала и конца 3D линии
+                        var start = line3D.Points[0];
+                        var end = line3D.Points[1];
+                        double detstart = (start.X * Math.Sin(fi) * Math.Cos(teta) - start.Y * Math.Sin(teta) - start.Z * Math.Cos(fi) * Math.Cos(teta)) / 100 + 1;
+                        double detend = (end.X * Math.Sin(fi) * Math.Cos(teta) - end.Y * Math.Sin(teta) - end.Z * Math.Cos(fi) * Math.Cos(teta)) / 100 + 1;
+
+                        //Обратное преобразование координат
+                        var x1 = (start.X * Math.Cos(fi) + start.Z * Math.Sin(fi)) / detstart;
+                        var y1 = (start.X * Math.Sin(fi) * Math.Sin(teta) + start.Y * Math.Cos(teta) - start.Z * Math.Cos(fi) * Math.Sin(teta)) / detstart;
+                        var z1 = 0;
+
+
+                        var x2 = (end.X * Math.Cos(fi) + end.Z * Math.Sin(fi)) / detend;
+                        var y2 = (end.X * Math.Sin(fi) * Math.Sin(teta) + end.Y * Math.Cos(teta) - end.Z * Math.Cos(fi) * Math.Sin(teta)) / detend;
+                        var z2 = 0;
+
+
+                        line3D.Points[0] = new Point3D(x1, y1, z1);
+                        line3D.Points[1] = new Point3D(x2, y2, z2);
+                    }
+                }
+
+            }
+        }
+
+        private void ChangeZRnd()
+        {
+            double depth = 10.0; // Глубина, на которую мы будем смещать точки
+            List<Point3D> newPoints = new List<Point3D>();
+
+            foreach (var child in viewport3d.Children)
+            {
+                if (child is LinesVisual3D line3D)
+                {
+                    if (line3D.Color == Colors.Gray)
+                    {
+                        var points = line3D.Points;
+                        for (int i = 0; i < points.Count; i++)
+                        {
+                            double x = points[i].X;
+                            double y = points[i].Y;
+                            double z = points[i].Z;
+
+                            // Создаем две точки с разными значениями Z для каждой исходной точки
+                            newPoints.Add(new Point3D(x, y, z));
+                            newPoints.Add(new Point3D(x, y, z + depth));
+                        }
+                        line3D.Points = new Point3DCollection(newPoints);
+                    }
+                }
+            }
+        }
+
+        
+
+      
+        private void CreateRandomCube()
+        {
+            Random random = new Random();
+            double sizeX = random.NextDouble() * 2; // случайный размер по X от 0 до 2
+            double sizeY = random.NextDouble() * 2; // случайный размер по Y от 0 до 2
+            double sizeZ = random.NextDouble() * 2; // случайный размер по Z от 0 до 2
+
+            // Центрируем куб относительно начала координат с учетом смещения
+            var offsetX = 767;
+            var offsetY = 498;
+            var offsetZ = 0;
+
+            var points = new Point3D[]
+            {
+        new Point3D(-0.5 * sizeX + offsetX, -0.5 * sizeY + offsetY, -0.5 * sizeZ + offsetZ),
+        new Point3D(0.5 * sizeX + offsetX, -0.5 * sizeY + offsetY, -0.5 * sizeZ + offsetZ),
+        new Point3D(0.5 * sizeX + offsetX, 0.5 * sizeY + offsetY, -0.5 * sizeZ + offsetZ),
+        new Point3D(-0.5 * sizeX + offsetX, 0.5 * sizeY + offsetY, -0.5 * sizeZ + offsetZ),
+        new Point3D(-0.5 * sizeX + offsetX, -0.5 * sizeY + offsetY, 0.5 * sizeZ + offsetZ),
+        new Point3D(0.5 * sizeX + offsetX, -0.5 * sizeY + offsetY, 0.5 * sizeZ + offsetZ),
+        new Point3D(0.5 * sizeX + offsetX, 0.5 * sizeY + offsetY, 0.5 * sizeZ + offsetZ),
+        new Point3D(-0.5 * sizeX + offsetX, 0.5 * sizeY + offsetY, 0.5 * sizeZ + offsetZ)
+            };
+
+            var edges = new (int, int)[]
+            {
+        (0, 1), (1, 2), (2, 3), (3, 0),
+        (4, 5), (5, 6), (6, 7), (7, 4),
+        (0, 4), (1, 5), (2, 6), (3, 7)
+            };
+
+            AddFigureToViewport(points, edges, Colors.Gray);
+        }
+
+        private void AddFigureToViewport(Point3D[] points, (int, int)[] edges, Color color)
+        {
+            var lines = new LinesVisual3D { Color = color, Thickness = 1 };
+
+            foreach (var edge in edges)
+            {
+                lines.Points.Add(points[edge.Item1]);
+                lines.Points.Add(points[edge.Item2]);
+            }
+
+            viewport3d.Children.Add(lines);
+        }
+
+        private void ChangeZ_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < viewport3d.Children.Count; i++)
+            {
+                if (viewport3d.Children[i] is LinesVisual3D lineToRolate && lineToRolate.Color == Colors.Gray)
+                {
+                    viewport3d.Children.Clear();
+                }
+            }
+            CreateRandomCube();
+        }
+
+        private void TrimetrMatr_Click(object sender, RoutedEventArgs e)
+        {
+            string fi = FItb.Text;
+            string teta = Tetatb.Text;
+            TrimetrMatrix(fi, teta);
+                }
     }
 }
