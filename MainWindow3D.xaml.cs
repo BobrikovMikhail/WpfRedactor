@@ -366,41 +366,58 @@ namespace WpfLab1
             }
         }
 
-        
 
-      
-        private void CreateRandomCube()
+
+
+        public void DrawHouseUsingLinesWithNodes(HelixViewport3D viewport)
         {
             Random random = new Random();
-            double sizeX = random.NextDouble() * 2; // случайный размер по X от 0 до 2
-            double sizeY = random.NextDouble() * 2; // случайный размер по Y от 0 до 2
-            double sizeZ = random.NextDouble() * 2; // случайный размер по Z от 0 до 2
+            int size = random.Next(20, 100);
+            //=== Основание дома (куб) ===
+            var basePoints = new List<Point3D>
+    {
+        new Point3D(0, 0, size), //Передний левый нижний
+        new Point3D(size, 0, size),  //Передний правый нижний
+        new Point3D(size, 0, 0),   //Задний правый нижний
+        new Point3D(0, 0, 0),  //Задний левый нижний
+        new Point3D(0,  size, size), //Передний левый верхний
+        new Point3D(size, size, size),  //Передний правый верхний
+        new Point3D(size, size, 0),   //Задний правый верхний
+        new Point3D(0, size, 0)   //Задний левый верхний
+    };
 
-            // Центрируем куб относительно начала координат с учетом смещения
-            var offsetX = 767;
-            var offsetY = 498;
-            var offsetZ = 0;
+            //Добавляем линии основания
+            AddRectangleWithNodes(viewport, basePoints[0], basePoints[1], basePoints[2], basePoints[3]); //Нижняя грань
+            AddRectangleWithNodes(viewport, basePoints[4], basePoints[5], basePoints[6], basePoints[7]); //Верхняя грань
+            AddLineWithNodes(viewport, basePoints[0], basePoints[4]); //Передняя левая вертикаль
+            AddLineWithNodes(viewport, basePoints[1], basePoints[5]); //Передняя правая вертикаль
+            AddLineWithNodes(viewport, basePoints[2], basePoints[6]); //Задняя правая вертикаль
+            AddLineWithNodes(viewport, basePoints[3], basePoints[7]); //Задняя левая вертикаль
 
-            var points = new Point3D[]
-            {
-        new Point3D(-0.5 * sizeX + offsetX, -0.5 * sizeY + offsetY, -0.5 * sizeZ + offsetZ),
-        new Point3D(0.5 * sizeX + offsetX, -0.5 * sizeY + offsetY, -0.5 * sizeZ + offsetZ),
-        new Point3D(0.5 * sizeX + offsetX, 0.5 * sizeY + offsetY, -0.5 * sizeZ + offsetZ),
-        new Point3D(-0.5 * sizeX + offsetX, 0.5 * sizeY + offsetY, -0.5 * sizeZ + offsetZ),
-        new Point3D(-0.5 * sizeX + offsetX, -0.5 * sizeY + offsetY, 0.5 * sizeZ + offsetZ),
-        new Point3D(0.5 * sizeX + offsetX, -0.5 * sizeY + offsetY, 0.5 * sizeZ + offsetZ),
-        new Point3D(0.5 * sizeX + offsetX, 0.5 * sizeY + offsetY, 0.5 * sizeZ + offsetZ),
-        new Point3D(-0.5 * sizeX + offsetX, 0.5 * sizeY + offsetY, 0.5 * sizeZ + offsetZ)
-            };
 
-            var edges = new (int, int)[]
-            {
-        (0, 1), (1, 2), (2, 3), (3, 0),
-        (4, 5), (5, 6), (6, 7), (7, 4),
-        (0, 4), (1, 5), (2, 6), (3, 7)
-            };
+        }
 
-            AddFigureToViewport(points, edges, Colors.Gray);
+        //Вспомогательный метод для добавления линии с узлами
+        private void AddLineWithNodes(HelixViewport3D viewport, Point3D start, Point3D end)
+        {
+            //Добавляем линию
+            var line = CreateLine3D(start, end, Colors.Gray);
+            viewport.Children.Add(line);
+
+            //Добавляем сферы в начальную и конечную точки линии
+            //var startSphere = DrawService.Create3DSphere(start, 1, Colors.LightBlue);
+            //var endSphere = DrawService.Create3DSphere(end, 1, Colors.LightBlue);
+            //viewport.Children.Add(startSphere);
+            //viewport.Children.Add(endSphere);
+        }
+
+        //Вспомогательный метод для добавления прямоугольника (4 линии с узлами)
+        private void AddRectangleWithNodes(HelixViewport3D viewport, Point3D p1, Point3D p2, Point3D p3, Point3D p4)
+        {
+            AddLineWithNodes(viewport, p1, p2); //Верхняя линия
+            AddLineWithNodes(viewport, p2, p3); //Правая линия
+            AddLineWithNodes(viewport, p3, p4); //Нижняя линия
+            AddLineWithNodes(viewport, p4, p1); //Левая линия
         }
 
         private void AddFigureToViewport(Point3D[] points, (int, int)[] edges, Color color)
@@ -418,14 +435,27 @@ namespace WpfLab1
 
         private void ChangeZ_Click(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < viewport3d.Children.Count; i++)
+            List<LinesVisual3D> LinesOnViewport = new List<LinesVisual3D>();
+            foreach(var item in viewport3d.Children)
             {
-                if (viewport3d.Children[i] is LinesVisual3D lineToRolate && lineToRolate.Color == Colors.Gray)
+                if (item is LinesVisual3D line) 
                 {
-                    viewport3d.Children.Clear();
-                }
+                    if (line.Color == Colors.Gray)
+                    {
+                        LinesOnViewport.Add(line);
+                    }
+
+                    } 
             }
-            CreateRandomCube();
+            for(int i = 0; i < LinesOnViewport.Count; i++)
+            {
+               viewport3d.Children.Remove(LinesOnViewport[i]);
+            }
+           
+           
+            DrawHouseUsingLinesWithNodes(viewport3d);
+
+
         }
 
         private void TrimetrMatr_Click(object sender, RoutedEventArgs e)
