@@ -395,6 +395,13 @@ namespace WpfLab1
             AddLineWithNodes(viewport, basePoints[2], basePoints[6]); //Задняя правая вертикаль
             AddLineWithNodes(viewport, basePoints[3], basePoints[7]); //Задняя левая вертикаль
 
+           /* var roofPeak = new Point3D(20, 70, 20); //Вершина крыши
+
+            AddTriangleWithNodes(viewport, basePoints[4], basePoints[5], roofPeak); //Передний треугольник
+            AddTriangleWithNodes(viewport, basePoints[6], basePoints[7], roofPeak); //Задний треугольник
+            AddLineWithNodes(viewport, basePoints[4], basePoints[7]); //Левая наклонная
+            AddLineWithNodes(viewport, basePoints[5], basePoints[6]); //Правая наклонная*/
+
 
         }
 
@@ -433,15 +440,40 @@ namespace WpfLab1
 
             viewport3d.Children.Add(lines);
         }
-        /*private void AddPyramide()
+        //Вспомогательный метод для добавления треугольника (3 линии с узлами)
+        private void AddTriangleWithNodes(HelixViewport3D viewport, Point3D p1, Point3D p2, Point3D p3)
         {
-            var roofPeak = new Point3D(20, 70, 20); //Вершина крыши
+            AddLineWithNodes(viewport, p1, p2); //Первая сторона
+            AddLineWithNodes(viewport, p2, p3); //Вторая сторона
+            AddLineWithNodes(viewport, p3, p1); //Третья сторона
+        }
+        
+        private void AddPyramide(HelixViewport3D viewport)
+        {
+            Random random = new Random();
+            int size = random.Next(20, 100);
+            var basePoints = new List<Point3D>
+            {
+                new Point3D(0, 0, size), //Передний левый нижний
+                new Point3D(size, 0, size),  //Передний правый нижний
+                new Point3D(size, 0, 0),   //Задний правый нижний
+                new Point3D(0, 0, 0),  //Задний левый нижний
+                new Point3D(0, size, size), //Передний левый верхний
+                new Point3D(size, size, size),  //Передний правый верхний
+                new Point3D(size, size, 0),   //Задний правый верхний
+                new Point3D(0, size, 0)   //Задний левый верхний
+            };
+            Random rnd = new Random();
+            int YKoef = random.Next(40, 100);
+            var roofPeak = new Point3D(20, YKoef, 20); //Вершина крыши
 
             AddTriangleWithNodes(viewport, basePoints[4], basePoints[5], roofPeak); //Передний треугольник
             AddTriangleWithNodes(viewport, basePoints[6], basePoints[7], roofPeak); //Задний треугольник
             AddLineWithNodes(viewport, basePoints[4], basePoints[7]); //Левая наклонная
             AddLineWithNodes(viewport, basePoints[5], basePoints[6]); //
-        }*/
+        }
+
+
         private void ChangeZ_Click(object sender, RoutedEventArgs e)
         {
             List<LinesVisual3D> LinesOnViewport = new List<LinesVisual3D>();
@@ -463,6 +495,7 @@ namespace WpfLab1
            
            
             DrawHouseUsingLinesWithNodes(viewport3d);
+           
 
 
         }
@@ -493,6 +526,28 @@ namespace WpfLab1
                     LinesFrom2d[i].Points = points;
                         }
             }
+        }
+
+        private void Pyramide_Click(object sender, RoutedEventArgs e)
+        {
+
+            List<LinesVisual3D> LinesOnViewport = new List<LinesVisual3D>();
+            foreach (var item in viewport3d.Children)
+            {
+                if (item is LinesVisual3D line)
+                {
+                    if (line.Color == Colors.Gray)
+                    {
+                        LinesOnViewport.Add(line);
+                    }
+
+                }
+            }
+            for (int i = 0; i < LinesOnViewport.Count; i++)
+            {
+                viewport3d.Children.Remove(LinesOnViewport[i]);
+            }
+            AddPyramide(viewport3d);
         }
     }
 }

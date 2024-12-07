@@ -21,8 +21,9 @@
         <Button x:Name="TrimetrMatr" Content="Триметрическая матрица" HorizontalAlignment="Left" Height="30" Margin="45,21,0,0" VerticalAlignment="Top" Width="149" Click="TrimetrMatr_Click"/>
         <TextBox x:Name="FItb" HorizontalAlignment="Left" Height="30" Margin="64,68,0,0" TextWrapping="Wrap" Text="введите фи" VerticalAlignment="Top" Width="112"/>
         <TextBox x:Name="Tetatb" HorizontalAlignment="Left" Height="27" Margin="64,115,0,0" TextWrapping="Wrap" Text="введите тэта" VerticalAlignment="Top" Width="112"/>
-        <Button x:Name="ChangeZ" Content="Нарисовать Куб" HorizontalAlignment="Left" Height="30" Margin="254,21,0,0" VerticalAlignment="Top" Width="104" Click="ChangeZ_Click"/>
+        <Button x:Name="ChangeZ" Content="Нарисовать Куб" HorizontalAlignment="Left" Height="30" Margin="219,21,0,0" VerticalAlignment="Top" Width="104" Click="ChangeZ_Click"/>
         <Button x:Name="ChangeZ1" Content="Изменение Z" HorizontalAlignment="Left" Height="24" Margin="15,170,0,0" VerticalAlignment="Top" Width="82" Click="ChangeZ1_Click"/>
         <TextBox x:Name="Ztext" HorizontalAlignment="Left" Height="22" Margin="25,210,0,0" TextWrapping="Wrap" Text="Ведите значение z" VerticalAlignment="Top" Width="59"/>
+        <Button x:Name="Pyramide" Content="Нарисовать пирамиду" HorizontalAlignment="Left" Height="30" Margin="338,21,0,0" VerticalAlignment="Top" Width="132" Click="Pyramide_Click"/>
     </Grid>
 </Window>
