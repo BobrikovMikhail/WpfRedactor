@@ -6,7 +6,7 @@
         KeyDown="WindowKeyDown">
 
     <Grid>
-        <h:HelixViewport3D Name="viewport3d" ShowCoordinateSystem="True">
+        <h:HelixViewport3D Name="viewport3d" ShowCoordinateSystem="True" Background="LightCyan">
             <h:HelixViewport3D.Camera>
                 <PerspectiveCamera Position="300,300,300" LookDirection="-1,-1,-1" UpDirection="0,1,0" />
             </h:HelixViewport3D.Camera>
