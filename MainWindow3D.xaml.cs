@@ -458,19 +458,15 @@ namespace WpfLab1
                 new Point3D(size, 0, size),  //Передний правый нижний
                 new Point3D(size, 0, 0),   //Задний правый нижний
                 new Point3D(0, 0, 0),  //Задний левый нижний
-                new Point3D(0, size, size), //Передний левый верхний
-                new Point3D(size, size, size),  //Передний правый верхний
-                new Point3D(size, size, 0),   //Задний правый верхний
-                new Point3D(0, size, 0)   //Задний левый верхний
             };
             Random rnd = new Random();
             int YKoef = random.Next(40, 100);
             var roofPeak = new Point3D(20, YKoef, 20); //Вершина крыши
 
-            AddTriangleWithNodes(viewport, basePoints[4], basePoints[5], roofPeak); //Передний треугольник
-            AddTriangleWithNodes(viewport, basePoints[6], basePoints[7], roofPeak); //Задний треугольник
-            AddLineWithNodes(viewport, basePoints[4], basePoints[7]); //Левая наклонная
-            AddLineWithNodes(viewport, basePoints[5], basePoints[6]); //
+            AddTriangleWithNodes(viewport, basePoints[0], basePoints[1], roofPeak); //Передний треугольник
+            AddTriangleWithNodes(viewport, basePoints[2], basePoints[3], roofPeak); //Задний треугольник
+            AddLineWithNodes(viewport, basePoints[0], basePoints[3]); //Левая наклонная
+            AddLineWithNodes(viewport, basePoints[1], basePoints[2]); //
         }
 
 
