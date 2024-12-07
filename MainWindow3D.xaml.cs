@@ -19,7 +19,7 @@ namespace WpfLab1
         private LinesVisual3D selectedLine;
         private static List<Line> lines = new List<Line>();
         MainWindow main = new MainWindow();
-        // List<LinesVisual3D> selectedLines = new List<LinesVisual3D>();
+        List<LinesVisual3D> LinesFrom2d = new List<LinesVisual3D>();
 
         public MainWindow3D()
         {
@@ -161,6 +161,7 @@ namespace WpfLab1
 
                 var line3D = AddNewLine3D(start3D, end3D, 2, Colors.Gray);
                 viewport3d.Children.Add(line3D);
+                LinesFrom2d.Add(line3D);
             }
         }
 
@@ -410,7 +411,7 @@ namespace WpfLab1
             //viewport.Children.Add(startSphere);
             //viewport.Children.Add(endSphere);
         }
-
+       
         //Вспомогательный метод для добавления прямоугольника (4 линии с узлами)
         private void AddRectangleWithNodes(HelixViewport3D viewport, Point3D p1, Point3D p2, Point3D p3, Point3D p4)
         {
@@ -432,7 +433,15 @@ namespace WpfLab1
 
             viewport3d.Children.Add(lines);
         }
+        /*private void AddPyramide()
+        {
+            var roofPeak = new Point3D(20, 70, 20); //Вершина крыши
 
+            AddTriangleWithNodes(viewport, basePoints[4], basePoints[5], roofPeak); //Передний треугольник
+            AddTriangleWithNodes(viewport, basePoints[6], basePoints[7], roofPeak); //Задний треугольник
+            AddLineWithNodes(viewport, basePoints[4], basePoints[7]); //Левая наклонная
+            AddLineWithNodes(viewport, basePoints[5], basePoints[6]); //
+        }*/
         private void ChangeZ_Click(object sender, RoutedEventArgs e)
         {
             List<LinesVisual3D> LinesOnViewport = new List<LinesVisual3D>();
@@ -464,5 +473,26 @@ namespace WpfLab1
             string teta = Tetatb.Text;
             TrimetrMatrix(fi, teta);
                 }
+
+        private void ChangeZ1_Click(object sender, RoutedEventArgs e)
+        {
+            double zKoef = CheckValue(Ztext.Text);
+            if(LinesFrom2d.Count > 0)
+            {
+                for(int i = 0; i < LinesFrom2d.Count; i++)
+                {
+                    var points = LinesFrom2d[i].Points;
+                    for(int j=0; j < points.Count; j++)
+                    {
+                        double x = points[j].X;
+                        double y = points[j].Y;
+                        double z = points[j].Z;
+                        z += zKoef;
+                        points[j] = new Point3D(x, y, z);
+                    }
+                    LinesFrom2d[i].Points = points;
+                        }
+            }
+        }
     }
 }
