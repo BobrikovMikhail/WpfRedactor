@@ -24,6 +24,7 @@
         <Button x:Name="ChangeZ" Content="Нарисовать Куб" HorizontalAlignment="Left" Height="30" Margin="219,21,0,0" VerticalAlignment="Top" Width="104" Click="ChangeZ_Click"/>
         <Button x:Name="ChangeZ1" Content="Изменение Z" HorizontalAlignment="Left" Height="24" Margin="15,170,0,0" VerticalAlignment="Top" Width="82" Click="ChangeZ1_Click"/>
         <TextBox x:Name="Ztext" HorizontalAlignment="Left" Height="22" Margin="25,210,0,0" TextWrapping="Wrap" Text="Ведите значение z" VerticalAlignment="Top" Width="59"/>
-        <Button x:Name="Pyramide" Content="Нарисовать пирамиду" HorizontalAlignment="Left" Height="30" Margin="338,21,0,0" VerticalAlignment="Top" Width="132" Click="Pyramide_Click"/>
+        <Button x:Name="Pyramide" Content="Нарисовать Пирамиду" HorizontalAlignment="Left" Height="30" Margin="338,21,0,0" VerticalAlignment="Top" Width="132" Click="Pyramide_Click"/>
+        <Button x:Name="Parallelepiped" Content="Нарисовать Параллелепипед" HorizontalAlignment="Left" Height="30" Margin="490,21,0,0" VerticalAlignment="Top" Width="172" Click="Parallelepiped_Click"/>
     </Grid>
 </Window>

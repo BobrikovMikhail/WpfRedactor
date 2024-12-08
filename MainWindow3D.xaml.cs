@@ -470,6 +470,42 @@ namespace WpfLab1
         }
 
 
+        public void AddParallelePiped(HelixViewport3D viewport)
+        {
+            Random random = new Random();
+            int size = random.Next(20, 60);
+            int secondSize = random.Next(80, 100);
+            //=== Основание дома (куб) ===
+            var basePoints = new List<Point3D>
+    {
+        new Point3D(0, 0, secondSize), //Передний левый нижний
+        new Point3D(size, 0, secondSize),  //Передний правый нижний
+        new Point3D(size, 0, 0),   //Задний правый нижний 
+        new Point3D(0, 0, 0),  //Задний левый нижний
+        new Point3D(0,  size, secondSize), //Передний левый верхний
+        new Point3D(size, size, secondSize),  //Передний правый верхний
+        new Point3D(size, size, 0),   //Задний правый верхний
+        new Point3D(0, size, 0)   //Задний левый верхний
+    };
+
+            //Добавляем линии основания
+            AddRectangleWithNodes(viewport, basePoints[0], basePoints[1], basePoints[2], basePoints[3]); //Нижняя грань
+            AddRectangleWithNodes(viewport, basePoints[4], basePoints[5], basePoints[6], basePoints[7]); //Верхняя грань
+            AddLineWithNodes(viewport, basePoints[0], basePoints[4]); //Передняя левая вертикаль
+            AddLineWithNodes(viewport, basePoints[1], basePoints[5]); //Передняя правая вертикаль
+            AddLineWithNodes(viewport, basePoints[2], basePoints[6]); //Задняя правая вертикаль
+            AddLineWithNodes(viewport, basePoints[3], basePoints[7]); //Задняя левая вертикаль
+
+            /* var roofPeak = new Point3D(20, 70, 20); //Вершина крыши
+
+             AddTriangleWithNodes(viewport, basePoints[4], basePoints[5], roofPeak); //Передний треугольник
+             AddTriangleWithNodes(viewport, basePoints[6], basePoints[7], roofPeak); //Задний треугольник
+             AddLineWithNodes(viewport, basePoints[4], basePoints[7]); //Левая наклонная
+             AddLineWithNodes(viewport, basePoints[5], basePoints[6]); //Правая наклонная*/
+
+
+        }
+
         private void ChangeZ_Click(object sender, RoutedEventArgs e)
         {
             List<LinesVisual3D> LinesOnViewport = new List<LinesVisual3D>();
@@ -488,10 +524,11 @@ namespace WpfLab1
             {
                viewport3d.Children.Remove(LinesOnViewport[i]);
             }
-           
-           
+
+
             DrawHouseUsingLinesWithNodes(viewport3d);
-           
+          
+
 
 
         }
@@ -544,6 +581,28 @@ namespace WpfLab1
                 viewport3d.Children.Remove(LinesOnViewport[i]);
             }
             AddPyramide(viewport3d);
+        }
+
+        private void Parallelepiped_Click(object sender, RoutedEventArgs e)
+        {
+            List<LinesVisual3D> LinesOnViewport = new List<LinesVisual3D>();
+            foreach (var item in viewport3d.Children)
+            {
+                if (item is LinesVisual3D line)
+                {
+                    if (line.Color == Colors.Gray)
+                    {
+                        LinesOnViewport.Add(line);
+                    }
+
+                }
+            }
+            for (int i = 0; i < LinesOnViewport.Count; i++)
+            {
+                viewport3d.Children.Remove(LinesOnViewport[i]);
+            }
+            AddParallelePiped(viewport3d);
+
         }
     }
 }
