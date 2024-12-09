@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="inputDialog.xaml.cs">
+      <DependentUpon>inputDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow3D.xaml.cs">
       <DependentUpon>MainWindow3D.xaml</DependentUpon>
     </Compile>
@@ -65,6 +68,11 @@
     <Compile Include="SubMenu.xaml.cs">
       <DependentUpon>SubMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window3DSize.cs" />
+    <Page Include="inputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

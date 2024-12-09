@@ -165,7 +165,7 @@ namespace WpfLab1
             }
         }
 
-        public void LoadLinesTo3D(Canvas paintSurface)
+        public void LoadLinesTo3D(Canvas paintSurface, double z)
         {
             foreach (var child in paintSurface.Children)
             {
@@ -175,6 +175,7 @@ namespace WpfLab1
                 }
             }
             AddLinesOnCanvas();
+            AddDepthTo2DLines(z); // Задайте необходимую глубину
         }
 
         private LinesVisual3D AddNewLine3D(Point3D start, Point3D end, double thickness, Color color)
@@ -603,6 +604,65 @@ namespace WpfLab1
             }
             AddParallelePiped(viewport3d);
 
+        }
+        private void AddDepthTo2DLines(double depth)
+        {
+            foreach (var line in LinesFrom2d)
+            {
+                var start = line.Points[0];
+                var end = line.Points[1];
+
+                var startBack = new Point3D(start.X, start.Y, start.Z + depth);
+                var endBack = new Point3D(end.X, end.Y, end.Z + depth);
+
+                var frontLine = CreateLine3D(start, end, Colors.Gray);
+                var backLine = CreateLine3D(startBack, endBack, Colors.Gray);
+                var connectingLine1 = CreateLine3D(start, startBack, Colors.Gray);
+                var connectingLine2 = CreateLine3D(end, endBack, Colors.Gray);
+
+                viewport3d.Children.Add(frontLine);
+                viewport3d.Children.Add(backLine);
+                viewport3d.Children.Add(connectingLine1);
+                viewport3d.Children.Add(connectingLine2);
+            }
+        }
+
+        private void Smesh_click(object sender, RoutedEventArgs e)
+        {
+            /*if (IsCountObjectsZero3D())
+           {
+               return;
+           }*/
+            double x = CheckValue(FItb_Копировать2.Text);
+            double y = CheckValue(FItb_Копировать1.Text);
+            double z = CheckValue(FItb_Копировать3.Text);
+
+            foreach (var child in viewport3d.Children)
+            {
+                if (child is LinesVisual3D line3D)
+                {
+                    if (line3D.Color == Colors.Gray)
+                    {
+                        //Получаем точки начала и конца 3D линии
+                        var start = line3D.Points[0];
+                        var end = line3D.Points[1];
+
+                        //Обратное преобразование координат
+                        var x1 = start.X + x;
+                        var y1 = start.Y + y;
+                        var z1 = start.Z + z;
+
+                        var x2 = end.X + x;
+                        var y2 = end.Y + y;
+                        var z2 = end.Z + z;
+
+
+                        line3D.Points[0] = new Point3D(x1, y1, z1);
+                        line3D.Points[1] = new Point3D(x2, y2, z2);
+                    }
+                }
+              
+            }
         }
     }
 }

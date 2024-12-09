@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using GraphicEditor;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -1250,7 +1251,10 @@ namespace WpfLab1
         {
 
             MainWindow3D window3D = new MainWindow3D();
-            window3D.LoadLinesTo3D(paintSurface);
+            InputDialog dialog = new InputDialog();
+            dialog.ShowDialog();
+            double zValue = dialog.ZValue;
+            window3D.LoadLinesTo3D(paintSurface, zValue);
             window3D.Show();
             
         }
