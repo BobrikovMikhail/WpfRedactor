@@ -66,7 +66,7 @@ namespace WpfLab1
             return new Point3D(screenPoint.X, screenPoint.Y, z);
         }
 
-        private void viewport3d_MouseDown(object sender, MouseButtonEventArgs e)
+        /*private void viewport3d_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
@@ -119,7 +119,7 @@ namespace WpfLab1
                 isMoving = false;
                 selectedLine = null;
             }
-        }
+        }*/
 
         private LinesVisual3D CreateLine3D(Point3D start, Point3D end, Color color)
         {
@@ -396,12 +396,12 @@ namespace WpfLab1
             AddLineWithNodes(viewport, basePoints[2], basePoints[6]); //Задняя правая вертикаль
             AddLineWithNodes(viewport, basePoints[3], basePoints[7]); //Задняя левая вертикаль
 
-           /* var roofPeak = new Point3D(20, 70, 20); //Вершина крыши
+            /* var roofPeak = new Point3D(20, 70, 20); //Вершина крыши
 
-            AddTriangleWithNodes(viewport, basePoints[4], basePoints[5], roofPeak); //Передний треугольник
-            AddTriangleWithNodes(viewport, basePoints[6], basePoints[7], roofPeak); //Задний треугольник
-            AddLineWithNodes(viewport, basePoints[4], basePoints[7]); //Левая наклонная
-            AddLineWithNodes(viewport, basePoints[5], basePoints[6]); //Правая наклонная*/
+             AddTriangleWithNodes(viewport, basePoints[4], basePoints[5], roofPeak); //Передний треугольник
+             AddTriangleWithNodes(viewport, basePoints[6], basePoints[7], roofPeak); //Задний треугольник
+             AddLineWithNodes(viewport, basePoints[4], basePoints[7]); //Левая наклонная
+             AddLineWithNodes(viewport, basePoints[5], basePoints[6]); //Правая наклонная*/
 
 
         }
@@ -419,7 +419,7 @@ namespace WpfLab1
             //viewport.Children.Add(startSphere);
             //viewport.Children.Add(endSphere);
         }
-       
+
         //Вспомогательный метод для добавления прямоугольника (4 линии с узлами)
         private void AddRectangleWithNodes(HelixViewport3D viewport, Point3D p1, Point3D p2, Point3D p3, Point3D p4)
         {
@@ -448,7 +448,7 @@ namespace WpfLab1
             AddLineWithNodes(viewport, p2, p3); //Вторая сторона
             AddLineWithNodes(viewport, p3, p1); //Третья сторона
         }
-        
+
         private void AddPyramide(HelixViewport3D viewport)
         {
             Random random = new Random();
@@ -510,25 +510,25 @@ namespace WpfLab1
         private void ChangeZ_Click(object sender, RoutedEventArgs e)
         {
             List<LinesVisual3D> LinesOnViewport = new List<LinesVisual3D>();
-            foreach(var item in viewport3d.Children)
+            foreach (var item in viewport3d.Children)
             {
-                if (item is LinesVisual3D line) 
+                if (item is LinesVisual3D line)
                 {
                     if (line.Color == Colors.Gray)
                     {
                         LinesOnViewport.Add(line);
                     }
 
-                    } 
+                }
             }
-            for(int i = 0; i < LinesOnViewport.Count; i++)
+            for (int i = 0; i < LinesOnViewport.Count; i++)
             {
-               viewport3d.Children.Remove(LinesOnViewport[i]);
+                viewport3d.Children.Remove(LinesOnViewport[i]);
             }
 
 
             DrawHouseUsingLinesWithNodes(viewport3d);
-          
+
 
 
 
@@ -539,17 +539,17 @@ namespace WpfLab1
             string fi = FItb.Text;
             string teta = Tetatb.Text;
             TrimetrMatrix(fi, teta);
-                }
+        }
 
         private void ChangeZ1_Click(object sender, RoutedEventArgs e)
         {
             double zKoef = CheckValue(Ztext.Text);
-            if(LinesFrom2d.Count > 0)
+            if (LinesFrom2d.Count > 0)
             {
-                for(int i = 0; i < LinesFrom2d.Count; i++)
+                for (int i = 0; i < LinesFrom2d.Count; i++)
                 {
                     var points = LinesFrom2d[i].Points;
-                    for(int j=0; j < points.Count; j++)
+                    for (int j = 0; j < points.Count; j++)
                     {
                         double x = points[j].X;
                         double y = points[j].Y;
@@ -558,7 +558,7 @@ namespace WpfLab1
                         points[j] = new Point3D(x, y, z);
                     }
                     LinesFrom2d[i].Points = points;
-                        }
+                }
             }
         }
 
@@ -661,8 +661,85 @@ namespace WpfLab1
                         line3D.Points[1] = new Point3D(x2, y2, z2);
                     }
                 }
-              
+
             }
         }
+        private Point3D startPoint3D;
+        private bool isFirstPointSet3D = false;
+        private LinesVisual3D current3DLine;
+
+        private void viewport3d_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Получаем позицию мыши
+            Point mousePosition = e.GetPosition(viewport3d);
+
+            // Выполняем хит-тест
+            var hitResult = VisualTreeHelper.HitTest(viewport3d.Viewport, mousePosition);
+
+            if (hitResult is RayMeshGeometry3DHitTestResult rayHitResult)
+            {
+                // Получаем точку пересечения
+                var hitPoint = rayHitResult.PointHit;
+
+                if (!isFirstPointSet3D)
+                {
+                    // Сохраняем первую точку и устанавливаем флаг
+                    startPoint3D = hitPoint;
+                    isFirstPointSet3D = true;
+
+                    /*// Добавляем сферу для первой точки
+                    var startSphere = DrawService.Create3DSphere(startPoint3D, 1, Colors.LightBlue);
+                    viewport3d.Children.Add(startSphere);*/
+                }
+                else
+                {
+                    // Вторая точка и завершение линии
+                    var endPoint3D = hitPoint;
+                    current3DLine = CreateLine3D(startPoint3D, endPoint3D, Colors.Gray);
+                    viewport3d.Children.Add(current3DLine);
+
+                    /*// Добавляем сферу для второй точки
+                    var endSphere = DrawService.Create3DSphere(endPoint3D, 1, Colors.LightBlue);
+                    viewport3d.Children.Add(endSphere);*/
+
+                    // Сброс флага для начала новой линии
+                    isFirstPointSet3D = false;
+                }
+            }
+        }
+        private void viewport3d_MouseMove(object sender, MouseEventArgs e)
+        {
+            /*Point mousePos = e.GetPosition(viewport3d);
+            Point3D point3D = ScreenToWorld(mousePos, 0);
+
+            if (isDrawing && currentLine != null)
+            {
+                UpdateLine3D(currentLine, curStartPoint, point3D);
+            }
+            else if (isMoving && selectedLine != null)
+            {
+                // Обновляем позицию выбранной линии
+                Point3D offset = new Point3D(point3D.X - curStartPoint.X, point3D.Y - curStartPoint.Y, point3D.Z - curStartPoint.Z);
+                MoveLine3D(selectedLine, offset);
+                curStartPoint = point3D;
+            }*/
+        }
+
+        private void viewport3d_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            /*if (isDrawing)
+            {
+                isDrawing = false;
+            }
+
+            if (isMoving)
+            {
+                isMoving = false;
+                selectedLine = null;
+            }*/
+        }
+
     }
+
+
 }
